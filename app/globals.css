@@ -2,32 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+html,
+body,
+.app {
+  height: 100%;
+}
+.header {
+  height: 74px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slide-nav ul {
+  display: flex;
+  gap: 1.6rem;
+
+  align-items: center;
+}
+
+.visible {
+  visibility: visible !important;
+}
+.open {
+  width: 250px !important;
+  background-color: rgb(114, 178, 181);
+}
+
+.nav__menu-bars {
+  display: none;
+}
+.nav__menu-close {
+  display: none;
+}
+
+@media screen and (max-width: 630px) {
+  /* Hide menu button on smaller screens */
+  .nav__menu-bars {
+    display: block;
+  }
+
+  .header .slide-nav {
+    transition: width 0.5s ease-out;
+    overflow: hidden;
+    height: 100%;
+    width: 0px;
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    z-index: 50;
+    visibility: hidden;
+    background-color: rgb(114, 178, 181);
+  }
+
+  .slide-nav ul {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    overflow-x: hidden;
+  }
+  .nav__menu-close {
+    display: block;
+    margin: 1rem 0.5rem;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.controls .selected {
+  background-color: saddlebrown;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.hide {
+  display: none;
+}
+
+.bg-clip-text {
+  background-color: white;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  background-repeat: repeat;
+  text-transform: uppercase;
+}
+
+.example-img {
+  background-image: url('/images/angler-mob.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: fixed;
+}
+
+.example {
+  background-image: url('https://picsum.photos/400/600?random=6');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-attachment: fixed;
 }
